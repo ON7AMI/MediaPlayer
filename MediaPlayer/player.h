@@ -5,9 +5,16 @@
 #include <QDialog>
 #include <QTimer>
 #include <QDir>
+#include <QThread>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
 #include <QGraphicsEffect>
+#include <QCoreApplication>
+#include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QMediaPlaylist>
+#include <QEventLoop>
+
 
 namespace Ui {
 class Player;
@@ -27,19 +34,29 @@ private:
 
     int VorigePersWissel;
     int PixTeller;
+    int VidTeller;
+    int VidAantal;
     int PixSwitch;
+    int SecondenTeller;
+    int SecondenWissel;
 
     QTimer* PixTimer;
 
     QDir* PixDir;
+    QDir* VidDir;
     QStringList filelist;
+    QList<int> ori, shuf;
 
     QGraphicsOpacityEffect *effect1, *effect2;
     QPropertyAnimation* animation1, *animation2;
 
-private slots:
+    QVideoWidget* videoWidget;
+    QMediaPlayer* player;
+
     void ShowPictures();
 
+private slots:
+    void SecondenTimer();
 };
 
 #endif // PLAYER_H
